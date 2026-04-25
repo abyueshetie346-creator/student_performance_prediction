@@ -7,17 +7,21 @@ import plotly.graph_objects as go
 from streamlit_option_menu import option_menu
 
 
-# የ GitHub icon ብቻ ለመደበቅ
+
+
+# የ GitHub icon ብቻ ለመደበቅ የሚረዳ ኮድ
 hide_github_only = """
     <style>
-    .viewerBadge_container__1QS13 {display: none;}
-    #GithubIcon {visibility: hidden;}
-    header {
-        background-color: rgba(0,0,0,0);
-    }
-    /* ይህ ክፍል የ GitHub linkን ከ header ውስጥ ያስወግዳል */
-    a[href^="https://github.com/"] {
+    /* የ GitHub iconን ብቻ ለመደበቅ */
+    .viewerBadge_container__1QS13, .viewerBadge_link__1QS13 {
         display: none !important;
+    }
+    #GithubIcon {
+        visibility: hidden;
+    }
+    /* በስተቀኝ በኩል ያለውን የ GitHub ሊንክ ለመደበቅ */
+    button[title="View source on GitHub"] {
+        display: none;
     }
     </style>
 """
