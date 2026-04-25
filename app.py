@@ -13,32 +13,27 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- 2. HIDE GITHUB ICON & HEADER (በጥንቃቄ ለመደበቅ) ---
-hide_st_style = """
+# --- 2. GITHUB ICON VISIBILITY & DISABLE CLICK ---
+disable_github_link = """
     <style>
-    /* የ GitHub iconን ብቻ ለመደበቅ */
+    /* የ GitHub icon እንዲታይ ግን እንዳይነካ (Disable Click) ማድረግ */
     button[title="View source on GitHub"] {
-        display: none !important;
+        pointer-events: none; /* መጫን እንዳይቻል ያደርገዋል */
+        cursor: default;     /* የእጅ ምልክት እንዳያሳይ ያደርገዋል */
     }
-    
-    /* የ Streamlit "Deploy" Button ለመደበቅ */
+
+    /* የ Streamlit "Deploy" Button መደበቅ */
     .stAppDeployButton {
         display: none !important;
     }
 
-    /* የላይኛው ባር እንዳለ ሆኖ እንዲቆይ (ለስልክ ሜኑ አስፈላጊ ስለሆነ) 
-       ነገር ግን በውስጡ ያሉትን የ GitHub/Deploy ምልክቶች ብቻ እናጠፋለን */
+    /* የላይኛው ባር ለስልክ ሜኑ እንዲታይ ማድረግ */
     header {
         background-color: rgba(0,0,0,0) !important;
     }
-
-    /* ከላይ ያለውን ባዶ ቦታ ለማስተካከል */
-    .block-container {
-        padding-top: 1rem;
-    }
     </style>
 """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+st.markdown(disable_github_link, unsafe_allow_html=True)
 
 # --- 3. LANGUAGE SESSION STATE ---
 if 'lang' not in st.session_state:
