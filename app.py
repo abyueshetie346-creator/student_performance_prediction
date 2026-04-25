@@ -6,6 +6,17 @@ import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_option_menu import option_menu
 
+
+# የGitHub ምልክቱን እና የStreamlit ሜኑን ለመደበቅ የሚረዳ ኮድ
+hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
     page_title="EduPredict AI",
