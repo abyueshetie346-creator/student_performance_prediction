@@ -6,31 +6,29 @@ import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_option_menu import option_menu
 
-# --- PAGE CONFIGURATION (ሁልጊዜ መጀመሪያ መሆን አለበት) ---
+# --- 1. PAGE CONFIGURATION (ሁልጊዜ መጀመሪያ መሆን አለበት) ---
 st.set_page_config(
     page_title="EduPredict AI",
     page_icon="🎓",
     layout="wide"
 )
 
-# --- 2. HIDE ONLY GITHUB ICON ---
-hide_github_only = """
+# --- 2. HIDE GITHUB ICON & HEADER (ሙሉ በሙሉ ለመደበቅ) ---
+hide_st_style = """
     <style>
-    /* የ GitHub iconን እና ሊንኩን ብቻ ለመደበቅ */
-    a[href*="github.com"] {
-        display: none !important;
-    }
-    #GithubIcon {
-        display: none !important;
-    }
-    button[title*="GitHub"] {
-        display: none !important;
-    }
+    /* የGitHub icon እና የላይኛው ባር ሙሉ በሙሉ ለመደበቅ */
+    header {visibility: hidden;}
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .stAppDeployButton {display: none !important;}
     
-    /* ሌሎቹ (Deploy button, MainMenu) እንዳይታዩ አይከለክልም */
+    /* ከላይ ያለውን ባዶ ቦታ ለማስተካከል */
+    .block-container {
+        padding-top: 2rem;
+    }
     </style>
 """
-st.markdown(hide_github_only, unsafe_allow_html=True)
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # --- 3. LANGUAGE SESSION STATE ---
 if 'lang' not in st.session_state:
