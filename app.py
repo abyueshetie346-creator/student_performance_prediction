@@ -6,26 +6,30 @@ import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_option_menu import option_menu
 
-# --- 1. PAGE CONFIGURATION (ሁልጊዜ መጀመሪያ መሆን አለበት) ---
+# --- 1. PAGE CONFIGURATION ---
 st.set_page_config(
     page_title="EduPredict AI",
     page_icon="🎓",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded" # በሞባይል ላይ Sidebarው ተዘግቶ እንዳይመጣ "expanded" ተደርጓል
 )
 
-# --- 2. HIDE GITHUB ICON & HEADER (ሙሉ በሙሉ ለመደበቅ) ---
+# --- 2. HIDE ONLY GITHUB ICON & DEPLOY BUTTON ---
+# እዚህ ጋር headerን ሙሉ በሙሉ አላጠፋንም፤ ምክንያቱም headerው ከጠፋ ሞባይል ላይ Sidebar መክፈቻው ይጠፋል
 hide_st_style = """
     <style>
-    /* የGitHub icon እና የላይኛው ባር ሙሉ በሙሉ ለመደበቅ */
-    header {visibility: hidden;}
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    .stAppDeployButton {display: none !important;}
-    
-    /* ከላይ ያለውን ባዶ ቦታ ለማስተካከል */
-    .block-container {
-        padding-top: 2rem;
+    /* የGitHub iconን ብቻ ለመደበቅ */
+    header a[href*="github.com"] {
+        display: none !important;
     }
+    /* የDeploy buttonን ለመደበቅ */
+    .stAppDeployButton {
+        display: none !important;
+    }
+    /* በስተቀኝ ያሉትን ሶስት ነጥቦች (Main Menu) ለመደበቅ ከፈለግክ ከታች ያለውን ተጠቀም (ካላስፈለገ ተወው) */
+    #MainMenu {visibility: hidden;}
+    
+    footer {visibility: hidden;}
     </style>
 """
 st.markdown(hide_st_style, unsafe_allow_html=True)
@@ -178,6 +182,7 @@ if selected == L['nav_home']:
         st.markdown(f'<div class="glass-card"><h3>{L["system_importance"]}</h3><p>{L["importance_text"]}</p></div>', unsafe_allow_html=True)
 
 elif selected == L['nav_predict']:
+    # (Predict ገጽ ይዘት...)
     st.title(f"🤖 {L['nav_predict']}")
     col_l, col_r = st.columns([1, 1.2])
     with col_l:
@@ -207,6 +212,7 @@ elif selected == L['nav_predict']:
         st.markdown('</div>', unsafe_allow_html=True)
 
 elif selected == L['nav_analytics']:
+    # (Analytics ገጽ ይዘት...)
     st.title(f"📊 {L['nav_analytics']}")
     if rf_model:
         st.markdown(f'<div class="glass-card"><h3>{L["analysis_title"]}</h3><p>{L["analysis_desc"]}</p></div>', unsafe_allow_html=True)
@@ -219,6 +225,7 @@ elif selected == L['nav_analytics']:
         st.markdown('</div>', unsafe_allow_html=True)
 
 elif selected == L['nav_info']:
+    # (Info ገጽ ይዘት...)
     st.title("ℹ️ Resources / መመሪያዎች")
     c_a, c_b = st.columns(2)
     with c_a:
